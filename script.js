@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         startBtn.addEventListener("click",()=>{
 
-            alert("🚀 AI Interview feature is coming soon!");
+           window.location.href = "pages/interview.html";
 
             // Future
             // window.location.href="pages/interview.html";
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         loginBtn.addEventListener("click",()=>{
 
-            alert("Login Page Coming Soon");
+            window.location.href = "pages/interview.html";
 
             // Future
             // window.location.href="pages/login.html";
