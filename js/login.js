@@ -1,27 +1,39 @@
-// Wait until page is loaded
-document.addEventListener("DOMContentLoaded", () => {
+// login.js
 
-    const loginForm = document.getElementById("loginForm");
+document.addEventListener("DOMContentLoaded", function () {
 
-    loginForm.addEventListener("submit", function (event) {
+  const loginForm = document.getElementById("loginForm");
 
-        event.preventDefault();
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
+    // Get input values
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-        // Validation
-        if (email === "" || password === "") {
-            alert("Please fill all fields.");
-            return;
-        }
+    // Basic validation
+    if (email === "" || password === "") {
+      alert("Please fill all fields");
+      return;
+    }
 
-        // Demo Login
-        alert("Login Successful!");
+    // Dummy login check (you can replace with real backend later)
+    if (email.length < 5) {
+      alert("Invalid email");
+      return;
+    }
 
-        // Redirect to dashboard
-        window.location.href = "dashboard.html";
+    if (password.length < 4) {
+      alert("Password too short");
+      return;
+    }
 
-    });
+    // Save login state (optional but useful)
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userEmail", email);
+
+    // Redirect to dashboard
+    window.location.href = "dashboard.html";
+  });
 
 });

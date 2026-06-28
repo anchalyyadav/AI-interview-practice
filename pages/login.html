@@ -1,60 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | AI Interview Platform</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/login.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .login-box {
+      background: rgba(255,255,255,0.08);
+      padding: 40px;
+      border-radius: 15px;
+      width: 320px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: #3b82f6;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    .text {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 10px;
+      color: #cbd5e1;
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="login-container">
+  <div class="login-box">
+    <h2>Login</h2>
 
-        <h2>Welcome Back 👋</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Enter Email" required>
+      <input type="password" id="password" placeholder="Enter Password" required>
 
-        <p>
-            Login to continue your AI Interview Journey
-        </p>
+      <button type="submit">Login</button>
+    </form>
 
-        <form id="loginForm">
+    <div class="text">Welcome back 👋</div>
+  </div>
 
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
-            </div>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-            </div>
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
 
-            <button type="submit" class="login-btn">
-                Login
-            </button>
+      // simple validation
+      if (email === "" || password === "") {
+        alert("Please fill all fields");
+        return;
+      }
 
-        </form>
+      // save login state
+      localStorage.setItem("isLoggedIn", "true");
 
-        <button class="google-btn">
-            Continue with Google
-        </button>
-
-        <p class="bottom-text">
-            Don't have an account?
-            <a href="signup.html">Create Account</a>
-        </p>
-
-    </div>
-
-    <script src="js/login.js"></script>
+      // redirect to dashboard
+      window.location.href = "dashboard.html";
+    });
+  </script>
 
 </body>
-
 </html>

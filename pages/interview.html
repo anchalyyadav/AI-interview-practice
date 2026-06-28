@@ -1,165 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Interview Practice</title>
+    <title>Interview Page</title>
 
-    <link rel="stylesheet" href="../css/interview.css">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 500px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .question-box {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            min-height: 80px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            outline: none;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .start {
+            background: #22c55e;
+            color: white;
+        }
+
+        .next {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .submit {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .end {
+            background: #ef4444;
+            color: white;
+        }
+
+        .status {
+            text-align: center;
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- Header -->
+        <h2>Interview Session</h2>
 
-    <header class="topbar">
-
-        <div class="logo">
-            <i class="fa-solid fa-robot"></i>
-            <h2>AI Interview Practice</h2>
+        <div class="question-box" id="questionBox">
+            Click "Start Interview" to begin
         </div>
 
-        <div class="top-right">
+        <textarea id="answer" placeholder="Write your answer here..."></textarea>
 
-            <div class="timer">
-                <i class="fa-regular fa-clock"></i>
-                <span id="time">00:00</span>
-            </div>
+        <div class="buttons">
 
-            <button class="end-btn">
-                <i class="fa-solid fa-power-off"></i>
-                End Interview
-            </button>
+            <button class="start" onclick="startInterview()">Start</button>
+            <button class="next" onclick="nextQuestion()">Next</button>
+            <button class="submit" onclick="goReport()">Submit</button>
+            <button class="end" onclick="endInterview()">End</button>
 
         </div>
 
-    </header>
+        <div class="status" id="status">Not started</div>
 
+    </div>
 
-    <!-- Main -->
+    <script>
+        let questions = [
+            "Tell me about yourself?",
+            "What are your strengths?",
+            "Why should we hire you?",
+            "What is your biggest weakness?",
+            "Where do you see yourself in 5 years?"
+        ];
 
-    <main class="main-layout">
+        let index = 0;
 
-        <!-- Camera -->
+        function startInterview() {
+            index = 0;
+            document.getElementById("questionBox").innerText = questions[index];
+            document.getElementById("status").innerText = "Interview started";
+        }
 
-        <section class="camera-card">
+        function nextQuestion() {
+            if (index < questions.length - 1) {
+                index++;
+                document.getElementById("questionBox").innerText = questions[index];
+                document.getElementById("answer").value = "";
+                document.getElementById("status").innerText = "Next question";
+            } else {
+                document.getElementById("status").innerText = "No more questions";
+            }
+        }
 
-            <h3>
-                <i class="fa-solid fa-video"></i>
-                Camera Preview
-            </h3>
+        function submitAnswer() {
+            let answer = document.getElementById("answer").value;
 
-            <div class="camera-preview">
+            if (answer === "") {
+                alert("Please write an answer first");
+                return;
+            }
 
-                <i class="fa-solid fa-user"></i>
+            alert("Answer submitted!");
+            document.getElementById("answer").value = "";
+            document.getElementById("status").innerText = "Answer submitted";
+        }
 
-            </div>
+        function endInterview() {
+            document.getElementById("questionBox").innerText = "Interview Ended";
+            document.getElementById("answer").value = "";
+            document.getElementById("status").innerText = "Completed";
+        }
 
-            <div class="camera-status">
-
-                <span class="green-dot"></span>
-
-                Camera Active
-
-            </div>
-
-        </section>
-
-
-        <!-- Interview -->
-
-        <section class="question-card">
-
-            <div class="icon">
-
-                <i class="fa-solid fa-comments"></i>
-
-            </div>
-
-            <h1>Interview Question</h1>
-
-            <p id="question">
-
-                Tell me about yourself.
-
-            </p>
-
-            <div class="buttons">
-
-                <button class="next-btn">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                    Next Question
-
-                </button>
-
-                <button class="submit-btn">
-
-                    Submit Answer
-
-                </button>
-
-            </div>
-
-            <div class="status">
-
-                <span>
-
-                    <i class="fa-solid fa-camera"></i>
-
-                    Camera ON
-
-                </span>
-
-                <span>
-
-                    <i class="fa-solid fa-microphone"></i>
-
-                    Microphone ON
-
-                </span>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- Tips -->
-
-    <section class="tips-card">
-
-        <h3>
-            <i class="fa-solid fa-star"></i>
-            Interview Tips
-        </h3>
-
-        <ul>
-
-            <li>✔ Speak confidently.</li>
-
-            <li>✔ Maintain eye contact.</li>
-
-            <li>✔ Think before answering.</li>
-
-            <li>✔ Keep answers concise.</li>
-
-        </ul>
-
-    </section>
-
-</div>
-
-<script src="../js/interview.js"></script>
+        function goReport() {
+            window.location.href = "report.html";
+        }
+    </script>
 
 </body>
+
 </html>

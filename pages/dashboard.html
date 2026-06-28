@@ -1,221 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Interview Dashboard</title>
+    <title>Dashboard</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../style.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            padding: 10px 18px;
+            background: #ef4444;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .container {
+            padding: 40px;
+        }
+
+        .welcome {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <script src="../js/dashboard.js"></script>
+    <header>
+        <h1>My Dashboard</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+    <div class="card" onclick="openProfile()">
+        <h3>Profile</h3>
+        <p>View and update your personal details.</p>
+    </div>
+    </div>
 
-        <h2 class="logo">
-            <i class="fa-solid fa-robot"></i>
-            AI Interview
-        </h2>
+    <div class="container">
+        <div class="welcome">Welcome Back 👋</div>
+        <div class="subtitle">Here is your project overview</div>
 
-        <ul>
-
-            <li class="active">
-                <i class="fa-solid fa-house"></i>
-                Dashboard
-            </li>
-
-            <li>
-                <i class="fa-solid fa-video"></i>
-                Start Interview
-            </li>
-
-            <li>
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                Interview History
-            </li>
-
-            <li>
-                <i class="fa-solid fa-chart-line"></i>
-                Performance
-            </li>
-
-            <li>
-                <i class="fa-solid fa-user"></i>
-                Profile
-            </li>
-
-            <li>
-                <i class="fa-solid fa-gear"></i>
-                Settings
-            </li>
-
-        </ul>
-
-    </aside>
-
-
-
-    <!-- Main Content -->
-
-    <main class="dashboard">
-
-        <header class="topbar">
-
-            <h1>
-                Welcome 👋
-            </h1>
-
-            <button class="logout-btn">
-                Logout
-            </button>
-
-        </header>
-
-
-
-        <!-- Cards -->
-
-        <section class="cards">
-
+        <div class="cards">
             <div class="card">
-
-                <i class="fa-solid fa-video"></i>
-
-                <h3>
-                    Start AI Interview
-                </h3>
-
-                <p>
-                    Practice technical and HR interviews.
-                </p>
-
-                <button>
-                    Start
-                </button>
-
+                <h3>Profile</h3>
+                <p>View and update your personal details.</p>
             </div>
 
-
-
             <div class="card">
-
-                <i class="fa-solid fa-chart-column"></i>
-
-                <h3>
-                    Performance
-                </h3>
-
-                <p>
-                    Check your interview score.
-                </p>
-
-                <button>
-                    View
-                </button>
-
+                <h3>Projects</h3>
+                <p>Manage all your ongoing work here.</p>
             </div>
 
-
-
             <div class="card">
-
-                <i class="fa-solid fa-book"></i>
-
-                <h3>
-                    Interview History
-                </h3>
-
-                <p>
-                    See your previous interviews.
-                </p>
-
-                <button>
-                    Open
-                </button>
-
+                <h3>Reports</h3>
+                <p>Check your performance analytics.</p>
             </div>
 
-
-
             <div class="card">
-
-                <i class="fa-solid fa-user"></i>
-
-                <h3>
-                    Profile
-                </h3>
-
-                <p>
-                    Update your profile.
-                </p>
-
-                <button>
-                    Edit
-                </button>
-
+                <h3>Settings</h3>
+                <p>Customize your account preferences.</p>
             </div>
+        </div>
+    </div>
 
-        </section>
+    <script>
+        function logout() {
+            window.location.href = "login.html";
+        }
 
-
-
-        <!-- Recent Activity -->
-
-        <section class="recent">
-
-            <h2>
-                Recent Activity
-            </h2>
-
-            <table>
-
-                <tr>
-                    <th>Date</th>
-                    <th>Interview</th>
-                    <th>Score</th>
-                    <th>Status</th>
-                </tr>
-
-                <tr>
-                    <td>20 June</td>
-                    <td>Java</td>
-                    <td>85%</td>
-                    <td>Passed</td>
-                </tr>
-
-                <tr>
-                    <td>22 June</td>
-                    <td>HTML</td>
-                    <td>92%</td>
-                    <td>Excellent</td>
-                </tr>
-
-                <tr>
-                    <td>25 June</td>
-                    <td>DSA</td>
-                    <td>78%</td>
-                    <td>Good</td>
-                </tr>
-
-            </table>
-
-        </section>
-
-    </main>
-
-<script src="../script.js"></script>
-
-<script src="../js/dashboard.js"></script>
+        function openProfile() {
+            window.location.href = "profile.html";
+        }
+    </script>
 
 </body>
+
 </html>
